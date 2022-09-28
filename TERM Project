@@ -7,27 +7,6 @@ import pandas as pd
 df = pd.read_csv(r'C:\Users\Daniel\Desktop\Midterm Project\tweets.csv')
 print(df)
 
-def plotPerColumnDistribution(df, nGraphShown, nGraphPerRow):
-    nunique = df.nunique()
-    df = df[[col for col in df if nunique[col] > 1 and nunique[col] < 50]] # For displaying purposes, pick columns that have between 1 and 50 unique values
-    nRow, nCol = df.shape
-    columnNames = list(df)
-    nGraphRow = (nCol + nGraphPerRow - 1) / nGraphPerRow
-    plt.figure(num = None, figsize = (6 * nGraphPerRow, 8 * nGraphRow), dpi = 80, facecolor = 'w', edgecolor = 'k')
-    for i in range(min(nCol, nGraphShown)):
-        plt.subplot(nGraphRow, nGraphPerRow, i + 1)
-        columnDf = df.iloc[:, i]
-        if (not np.issubdtype(type(columnDf.iloc[0]), np.number)):
-            valueCounts = columnDf.value_counts()
-            valueCounts.plot.bar()
-        else:
-            columnDf.hist()
-        plt.ylabel('counts')
-        plt.xticks(rotation = 90)
-        plt.title(f'{columnNames[i]} (column {i})')
-    plt.tight_layout(pad = 1.0, w_pad = 1.0, h_pad = 1.0)
-    plt.show()
-
 def plotCorrelationMatrix(df, graphWidth):
     filename = df.dataframeName
     df = df.dropna('columns') # drop columns with NaN
@@ -60,8 +39,17 @@ def plotScatterMatrix(df, plotSize, textSize):
         ax[i, j].annotate('Corr. coef = %.3f' % corrs[i, j], (0.8, 0.2), xycoords='axes fraction', ha='center', va='center', size=textSize)
     plt.suptitle('Scatter and Density Plot')
     plt.show()
-
+    
 df.head(5)
-plotPerColumnDistribution(df1, 10, 5)
-plotCorrelationMatrix(df1, 8)
-plotScatterMatrix(df1, 6, 15)
+
+f = plt.figure(figsize=(10, 5))
+plt.matshow(df.corr(), fignum=f.number)
+plt.xticks(range(df.select_dtypes(['number']).shape[1]), df.select_dtypes(['number']).columns, fontsize=14, rotation=45)
+plt.yticks(range(df.select_dtypes(['number']).shape[1]), df.select_dtypes(['number']).columns, fontsize=14)
+cb = plt.colorbar()
+cb.ax.tick_params(labelsize=14)
+plt.title('Correlation Matrix for tweets.csv', fontsize=16);
+
+corr.style.background_gradient(cmap='coolwarm', axis=None)
+
+plotScatterMatrix(df, 6, 15)

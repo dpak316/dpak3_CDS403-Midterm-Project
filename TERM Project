@@ -5,7 +5,8 @@ import numpy as np
 import os 
 import pandas as pd 
 
-print(os.listdir('C:\Users\Daniel\Desktop\Midterm Project\tweets.csv'))
+df = pd.read_csv(r'C:\Users\Daniel\Desktop\Midterm Project\tweets.csv')
+print(df)
 
 def plotPerColumnDistribution(df, nGraphShown, nGraphPerRow):
     nunique = df.nunique()
@@ -60,15 +61,8 @@ def plotScatterMatrix(df, plotSize, textSize):
         ax[i, j].annotate('Corr. coef = %.3f' % corrs[i, j], (0.8, 0.2), xycoords='axes fraction', ha='center', va='center', size=textSize)
     plt.suptitle('Scatter and Density Plot')
     plt.show()
-    
-nRowsRead = 1000 # specify 'None' if want to read whole file
-# tweets.csv has 17411 rows in reality, but we are only loading/previewing the first 1000 rows
-df1 = pd.read_csv('C:\Users\Daniel\Desktop\Midterm Project\tweets.csv', delimiter=',', nrows = nRowsRead)
-df1.dataframeName = 'tweets.csv'
-nRow, nCol = df1.shape
-print(f'There are {nRow} rows and {nCol} columns')
 
-df1.head(5)
+df.head(5)
 plotPerColumnDistribution(df1, 10, 5)
 plotCorrelationMatrix(df1, 8)
 plotScatterMatrix(df1, 6, 15)

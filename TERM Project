@@ -40,7 +40,7 @@ def plotScatterMatrix(df, plotSize, textSize):
     plt.suptitle('Scatter and Density Plot')
     plt.show()
     
-df.head(5)
+df.head(10)
 
 f = plt.figure(figsize=(10, 5))
 plt.matshow(df.corr(), fignum=f.number)

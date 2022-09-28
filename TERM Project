@@ -5,7 +5,7 @@ import numpy as np
 import os 
 import pandas as pd 
 
-print(os.listdir('../input'))
+print(os.listdir('C:\Users\Daniel\Desktop\Midterm Project\tweets.csv'))
 
 def plotPerColumnDistribution(df, nGraphShown, nGraphPerRow):
     nunique = df.nunique()
@@ -63,7 +63,7 @@ def plotScatterMatrix(df, plotSize, textSize):
     
 nRowsRead = 1000 # specify 'None' if want to read whole file
 # tweets.csv has 17411 rows in reality, but we are only loading/previewing the first 1000 rows
-df1 = pd.read_csv('../input/tweets.csv', delimiter=',', nrows = nRowsRead)
+df1 = pd.read_csv('C:\Users\Daniel\Desktop\Midterm Project\tweets.csv', delimiter=',', nrows = nRowsRead)
 df1.dataframeName = 'tweets.csv'
 nRow, nCol = df1.shape
 print(f'There are {nRow} rows and {nCol} columns')

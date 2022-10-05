@@ -40,7 +40,7 @@ def plotScatterMatrix(df, plotSize, textSize):
     plt.suptitle('Scatter and Density Plot')
     plt.show()
     
-df.head(10)
+df.head(5)
 
 f = plt.figure(figsize=(10, 5))
 plt.matshow(df.corr(), fignum=f.number)
@@ -50,6 +50,7 @@ cb = plt.colorbar()
 cb.ax.tick_params(labelsize=14)
 plt.title('Correlation Matrix for tweets.csv', fontsize=16);
 
-corr.style.background_gradient(cmap='coolwarm', axis=None)
+plt.matshow(df.corr())
+plt.show()
 
 plotScatterMatrix(df, 6, 15)

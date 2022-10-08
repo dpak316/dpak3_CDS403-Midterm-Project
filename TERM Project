@@ -70,3 +70,11 @@ plt.figure(3,figsize=(11,11))
 plt.title("Directed Graph from ISIS-related Tweets")
 nx.draw_circular(G)
 plt.show()
+
+# Histogram plot
+plt.figure(3,figsize=(12,8))
+plt.hist(df['followers'], bins=20, alpha=0.45, color='blue')
+plt.hist(df['numberstatuses'], bins=20, alpha=0.45, color='red')
+plt.title("Histogram of Followers and Numberstatuses")
+plt.legend(['Followers on Twitter', 'Number of Statuses on Twitter'])
+plt.show()

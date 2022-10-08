@@ -3,9 +3,9 @@ from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt 
 import numpy as np 
 import pandas as pd 
+import networkx as nx
 
 df = pd.read_csv(r'C:\Users\Daniel\Desktop\Midterm Project\tweets.csv')
-print(df)
 
 def plotCorrelationMatrix(df, graphWidth):
     filename = df.dataframeName
@@ -40,7 +40,7 @@ def plotScatterMatrix(df, plotSize, textSize):
     plt.suptitle('Scatter and Density Plot')
     plt.show()
     
-df.head(5)
+print(df.head(5))
 
 f = plt.figure(figsize=(10, 5))
 plt.matshow(df.corr(), fignum=f.number)
@@ -53,7 +53,7 @@ plt.title('Correlation Matrix for tweets.csv', fontsize=16);
 plt.matshow(df.corr())
 plt.show()
 
-plotScatterMatrix(df, 6, 15)
+plotScatterMatrix(df, 8, 12)
 
 # Network visualization
 G = nx.from_pandas_edgelist(df,

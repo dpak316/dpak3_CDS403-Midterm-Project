@@ -54,3 +54,19 @@ plt.matshow(df.corr())
 plt.show()
 
 plotScatterMatrix(df, 6, 15)
+
+# Network visualization
+G = nx.from_pandas_edgelist(df,
+                            source='name',
+                            target='location',
+                            edge_attr='tweets')
+
+plt.figure(3,figsize=(11,11))
+plt.title("ISIS Twitter Network")
+nx.draw_networkx(G)
+plt.show()
+
+plt.figure(3,figsize=(11,11))
+plt.title("Directed Graph from ISIS-related Tweets")
+nx.draw_circular(G)
+plt.show()
